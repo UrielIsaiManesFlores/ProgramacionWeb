@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0%;
+        }
+        .padre{ /*el padre le dice como comportarse el hijo*/
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            background-color: black;
+            flex-direction: row;
+            /*flex-direction: column;*/ 
+            flex-wrap: wrap;
+            justify-content: center; /*es para alinear las cajas en algun punto del eje principal*/
+            /*align-content: center; /*este es para alinear las cajas en el eje secundario o sea en el vertical*/
+            gap: 10px; /*el gap hace que haya espacio entre las cajas */
+
+        }
+        .hijo{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            border: 3px solid red;
+            color: white;
+        }
+
+        #caja2{
+            flex-grow: 2; /*el flexgrow es para hacer una caja mas grande y pues multiplicas con el numero*/
+            align-self: flex-end;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="padre">
+        <div class="hijo" id="caja1">caja1</div>
+        <div class="hijo" id="caja2">caja2</div>
+        <div class="hijo" id="caja3">caja3</div>
+        <div class="hijo" id="caja4">caja4</div>
+        <div class="hijo" id="caja5">caja5</div>
+    </div>
+</body>
+</html>
