@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #contenedor{
+            width: 100vw;
+            height: 100vh;
+            background-color: blue;
+            display: grid;
+            
+            grid-template-columns:30% 70%;
+            grid-template-rows: 20% 70% 10%;
+            grid-template-areas: 'encabezado encabezado'
+                                 'barralateral contenido'
+                                 'piepagina piepagina';
+
+            justify-content: center;
+            align-content: center;
+
+            justify-items: stretch;
+            align-items: stretch;
+
+            
+
+            /*grid-auto-flow: column;*/
+        }
+
+        .caja{
+            /*width: 100px;
+            height: 100px;*/
+            background-color: white;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        #encabezado{grid-area: encabezado;}
+        #barralateral{grid-area: barralateral;}
+        #contenido{grid-area: contenido;}
+        #piepagina{grid-area: piepagina;}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="contenedor">
+        
+        <div class="caja" id="encabezado">caja1</div>
+        <div class="caja" id="barralateral">caja2</div>
+        <div class="caja" id="contenido">caja3</div>
+        <div class="caja" id="piepagina">caja4</div>
+        
+
+    </div>
+</body>
+</html>
