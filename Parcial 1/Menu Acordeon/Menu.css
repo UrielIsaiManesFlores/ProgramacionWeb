@@ -16,6 +16,10 @@ html,body{
     height: 100%; 
  }
 
+li.opcion{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+}
 
 div#caja{
     width: 100%;
@@ -43,8 +47,4 @@ ul{
 }
 .opcion:hover > ul{
     display: block;
-}
-
-li.opcion{
-
 }
