@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #contenedor{
+            width: 100vw;
+            height: 100vh;
+            background-color: blue;
+            display: grid;
+            
+            grid-template-columns:33% 33% 33%;
+            grid-template-rows: 60% 20% 20%;
+            
+            grid-template-areas: 'encabezado contenido barralateral'
+                                 'piepagina piepagina piepagina'
+                                 'cajaextra cajaextra cajaextra';
+                                 
+
+            justify-content: center;
+            align-content: center;
+
+            justify-items: stretch;
+            align-items: stretch;
+
+            
+
+            /*grid-auto-flow: column;*/
+        }
+
+        .caja{
+            /*width: 100px;
+            height: 100px;*/
+            background-color: white;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        #encabezado{grid-area: encabezado;}
+        #barralateral{grid-area: barralateral;}
+        #contenido{grid-area: contenido;}
+        #piepagina{grid-area: piepagina;}
+        #cajaextra{grid-area: cajaextra;}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="contenedor">
+        
+        <div class="caja" id="encabezado" onclick="alert('click en el encabezado')" >Encabezado</div>
+        <div class="caja" id="barralateral"> Barra Lateral</div>
+        <div class="caja" id="contenido">Contenido</div>
+        <div class="caja" id="piepagina">PiePagina</div>
+        <div class="caja" id="cajaextra">CajaExtras</div>
+
+        <!-- <div class="caja" id="cajaextra">caja4</div> -->
+        
+        <script>
+
+            window.onload = function()
+            {
+
+            
+                //onclick: "alert"("click en el encabezado");
+
+                //METODO 2
+                /*solo sirve para poner un fuction*/
+                document.getElementById("barralateral").onclick = function() {alert("Alerta Clicl en barra lateral")};
+
+                //METODO 3
+                // en este evento puedes pooner mas funcinoes, 'addEventListener' 
+                document.getElementById("contenido").addEventListener("click",clickcontenido); //no se ponen parentesis pq quiere decir que se esta ejecuttando
+                // document.getElementById("contenido").addEventListener("click en el contenido",clickcontenido2);
+                
+                function clickcontenido()
+                {
+                    alert("ALERTA click en el contenido")
+                }
+
+                // function clickcontenido2()
+                // {
+                //     alert("ALERTA click en el contenido")
+                // }
+
+                //METODO 4
+                //Se ponen parentesis y ahi mismo se pone la accion de la fuction
+                document.getElementById("piepagina").addEventListener("click",function()
+                {alert("Click en piepagina")});
+
+
+                //METODO 5
+                document.getElementById("cajaextra").addEventListener("click",() =>
+                {alert("Click en caja extra")});
+            }    
+        </script>
+
+    </div>
+</body>
+</html>
