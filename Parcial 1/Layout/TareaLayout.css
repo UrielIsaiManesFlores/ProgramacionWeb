@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: purple;
+
+}
+
+#input{
+    
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+#MyInput{
+    width: 60%;
+    text-align: center;
+    font-size: 2.4rem;
+    color: white;
+}
+
+.content {
+    margin: 0;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 20% 70% 10%;
+    grid-template-areas:  "menulat encab encab"
+                          "menulat col1 col2"
+                          "menulat footer footer";
+}
+
+#box1{grid-area: menulat;}
+#box2{grid-area: encab;}
+#box3{grid-area: col1;}
+#box4{grid-area: col2;}
+#box5{grid-area: footer;}
+
+
+.content .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin: 5px;
+    background-color: wheat;
+    text-align: center;
+    border: 2px solid black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: background-color 1s;
+    
+}
+
+.content .box:hover{
+    background-color: black;
+    color: white;
+}
