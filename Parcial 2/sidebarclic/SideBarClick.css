@@ -8,6 +8,39 @@ html, body{
     height: 100%;
 }
 
+li.opcion{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+}
+
+div#caja{
+    width: 100%;
+    height: 100%;
+}
+
+#cambiatema:checked + div#caja {
+    background-color: var(--fondo-dark);
+    color: var(--texto-dark);
+}
+
+ul{
+    list-style-type: none;
+}
+.opcion > ul{
+    display: none;
+    margin: 10px 10px 10px 10px;
+    background-color: gray;
+    border: 1px solid red ;
+    border-bottom: yellow;
+    text-decoration: none;
+    font-weight: bold;
+
+    font-family: sans-serif;
+}
+.opcion:hover > ul{
+    display: block;
+}
+
 .contenedor{
     width: 100%;
     height: 100%;
