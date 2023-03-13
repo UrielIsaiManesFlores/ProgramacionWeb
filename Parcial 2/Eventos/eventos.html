@@ -18,7 +18,7 @@
             background-color: blue;
             display: grid;
             
-            grid-template-columns:33% 33% 33%;
+            grid-template-columns:33.33% 33.33% 33.33%;
             grid-template-rows: 60% 20% 20%;
             
             grid-template-areas: 'encabezado contenido barralateral'
@@ -76,8 +76,13 @@
 
                 //METODO 2
                 /*solo sirve para poner un fuction*/
-                document.getElementById("barralateral").onclick = function() {alert("Alerta Clicl en barra lateral")};
+                document.getElementById("barralateral").onclick = function() {
+                    //alert("Alerta Clicl en barra lateral")};
+                    document.getElementById("barralateral").style.backgroundColor="black";
+                }
 
+
+                //-------------------------------------------------------------------------------------------------------------
                 //METODO 3
                 // en este evento puedes pooner mas funcinoes, 'addEventListener' 
                 document.getElementById("contenido").addEventListener("click",clickcontenido); //no se ponen parentesis pq quiere decir que se esta ejecuttando
@@ -93,12 +98,17 @@
                 //     alert("ALERTA click en el contenido")
                 // }
 
+
+                //------------------------------------------------------------------------------------------------------------------------------
                 //METODO 4
                 //Se ponen parentesis y ahi mismo se pone la accion de la fuction
                 document.getElementById("piepagina").addEventListener("click",function()
                 {alert("Click en piepagina")});
 
 
+
+
+                //-------------------------------------------------------------------------------------------------------------------------
                 //METODO 5
                 document.getElementById("cajaextra").addEventListener("click",() =>
                 {alert("Click en caja extra")});
