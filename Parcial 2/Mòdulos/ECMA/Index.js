@@ -1,4 +1,4 @@
 import * as areas from './areas expo';
 
-console.log(area.areaCuadradado(2));
-console.log(area.areaTriangulo(2,5));
+console.log(areas.areaCuadradado(2));
+console.log(areas.areaTriangulo(2,5));
