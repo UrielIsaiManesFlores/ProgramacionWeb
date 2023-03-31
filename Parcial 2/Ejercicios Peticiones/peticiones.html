@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<style>
+    #img
+    {
+        width: 450px;
+        height: 550px;
+    }
+
+</style>
+
+<body>
+    <button id="btn">Peticion XMLHTTP</button>
+    <button id="btn2">Peticion Jquery ajax</button>
+    <button id="btn3">Peticion Jquery GET</button>
+    <button id="btn4">Peticion Jquery JSON</button>
+    <button id="btn5">Peticion Fetch</button>
+    <button id="btn6">Peticion AXIOS</button>
+    <button id="btn7">Peticion Async</button>
+
+    <div id="resultado">
+        <img src="" alt="" id="img">
+
+    </div>
+
+    <script>
+        //vanilla
+        //-----------------------------------------------------------------------------------------------------
+        window.onload = function () {
+            document.getElementById("btn").addEventListener("click", function () {
+                console.log("Click en boton XMLHTTP");
+
+                let solicitud = new XMLHttpRequest();
+                solicitud.responseType = 'json';
+                solicitud.onload = function () {
+                    console.log(solicitud.response.url);
+                    document.getElementById("img").src = solicitud.response.url;
+
+                }
+                solicitud.open("GET", "https://random.dog/woof.json", true);
+                solicitud.send();
+            });
+
+            //METODO FETCH
+            document.getElementById("btn5").addEventListener("click", function () { 
+                fetch("https://random.dog/woof.json")
+                    .then(respuesta => respuesta.json())
+                    .then(function (datojson){
+                        console.log("Click en boton FETCH");
+                        console.log(datojson.url);
+                        document.getElementById("img").src = datojson.url;
+                    })
+
+
+            });
+
+            //METODO AXIOS  
+            document.getElementById("btn6").addEventListener("click", function () {
+                axios
+                    ({
+                        method: 'get',
+                        url: 'https://random.dog/woof.json',
+                        //responseType: 'stream'
+                    })
+                    .then(function (response) {
+                        //response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+                        console.log("Click en boton AXIOS");
+                        console.log(response.data.url);
+                        document.getElementById("img").src = response.data.url;
+                    });
+            });
+
+            //Metodo Async await
+            document.getElementById("btn7").addEventListener("click",async  function(){
+                
+                console.log("click en boton Async");
+                const response = await fetch('https://random.dog/woof.json');
+                const data = await response.json();
+                console.log(data.url);
+                document.getElementById("img").src = data.url;
+            })
+
+        }
+
+        
+        //Con jQuery Ajax / JQuery
+        $(document).ready(function () { 
+            //Con jQuery Ajax / JQuery
+            $("#btn2").click(function () {
+                console.log("Click en boton con jQuery Ajax");
+                $.ajax({
+                    url: "https://random.dog/woof.json"
+                }).done(function (respuesta) {
+                    console.log(respuesta.url);
+                    $("#img").attr('src',respuesta.url);
+                    // document.getElementById("resultado").innerText=respuesta.value;
+                    //$("#resultado").text(respuesta.url)
+
+                })
+
+            })
+        })
+
+
+
+
+        $(document).ready(function () {
+            
+            //METODO Get
+            $("#btn3").click(function () {
+                console.log("Click en boton GET");
+                $.get("https://random.dog/woof.json", function (respuesta) {
+                    console.log(respuesta.url);
+                    $("#img").attr('src',respuesta.url);
+                }, "json")
+
+
+            })
+
+            //METODO Json
+            $("#btn4").click(function () { console.log("Click en boton JSON");
+                $.getJSON("https://random.dog/woof.json", function (respuesta) {
+                    console.log(respuesta.url);
+                    $("#img").attr('src',respuesta.url);
+                })
+
+
+            })
+        })
+
+
+
+    </script>
+</body>
+
+</html>
