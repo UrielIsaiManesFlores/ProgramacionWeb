@@ -50,7 +50,7 @@
                     document.getElementById("img").src = solicitud.response.url;
 
                 }
-                solicitud.open("GET", "https://random.dog/woof.json", true);
+                solicitud.open("GET", "https://api.waifu.im/search/?included_tags=selfies", true);
                 solicitud.send();
             });
 
@@ -60,8 +60,8 @@
                     .then(respuesta => respuesta.json())
                     .then(function (datojson){
                         console.log("Click en boton FETCH");
-                        console.log(datojson.url);
-                        document.getElementById("img").src = datojson.url;
+                        console.log(datojson.images[0].url);
+                        document.getElementById("img").src = datojson.images[0].url;
                     })
 
 
