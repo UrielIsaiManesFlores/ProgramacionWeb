@@ -1,0 +1,26 @@
+{
+    "plugins": [],
+    "recurseDepth": 10,
+    "source": {
+        "Include":  ["/source"],
+        "includePattern":  ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+
+    "opts": {
+        "template": "templates/default", 
+        "encoding": "utf8", 
+        "destination": "./out/", 
+        "recurse": true, 
+        "tutorials": "path/to/tutorials"
+       }
+}
