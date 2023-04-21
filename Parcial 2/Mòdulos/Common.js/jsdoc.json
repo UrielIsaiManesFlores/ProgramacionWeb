@@ -2,7 +2,7 @@
     "plugins": [],
     "recurseDepth": 10,
     "source": {
-        "Include":  ["/source"],
+        "include":  ["source"],
         "includePattern":  ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
@@ -22,5 +22,5 @@
         "destination": "./out/", 
         "recurse": true, 
         "tutorials": "path/to/tutorials"
-       }
+    }
 }
