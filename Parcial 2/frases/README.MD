@@ -1,16 +1,18 @@
 # FRASECEL
 
-paquete que muuesrta frases celebres
+Paquete que muestra frases celeberes mexicanas y una que otra gringa
 
-## instalacion
+## Instalacion
 
-'''bath
+```bash
 # npm install frasecel
+```
 
-'''
+## Uso del paquete
 
-## uso del paquete
+```js
+let frasecel = require('frasescel');
 
-'''js
-let frasecel = require('frasecel')
-'''
+let frase = obtenerFrase();
+console(frase);
+```
