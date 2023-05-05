@@ -1,0 +1,45 @@
+const express  = require('express')
+const app = express()
+var mysql = require('mysql');
+
+app.use(express.json());
+
+//aqui se cambia usurarios por el nombre de de la tabla 
+app.get('/generos', (req,res)=> {
+
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : '',
+        database : 'programacionweb'
+    });
+
+        connection.connect();
+ 
+        //connection.query('SELECT 1 + 1 AS solution id_cliente=$(req.query.id_cliente), function (error, results, fields)
+        connection.query('SELECT * from generos', function (error, results, fields) {
+
+            if (error) throw error;
+            //console.log('The solution is: ', results[0].solution);
+            res.json(results)
+        }); 
+ 
+        connection.end();
+
+    //console.log(req.require); BORRAR
+    //res.send('Enviaste una peticion GET a /usuarios' + req.query.nombre);
+    //METODO PARA REGRESAR JSON
+
+    //res.json({peticion:"get", nombre: req.require.nombreusuario}); BORRAR
+})
+
+//enviar datos en el body
+//casi siempre son para dar de alta, se puede enciar json,html varias cosas
+app.post('/usuarios', (req,res)=> {
+    console.log(req.body.numero);
+    res.send('Enviaste una peticion POST a /generos');
+})
+
+app.listen(8082, () => {
+    console.log("servidor express escuchando en 8082");
+})
