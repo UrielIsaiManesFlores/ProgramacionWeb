@@ -5,7 +5,7 @@ var mysql = require('mysql');
 app.use(express.json());
 
 //aqui se cambia usurarios por el nombre de de la tabla 
-app.get('/generos', (req,res)=> {
+app.get('/generosmusicales', (req,res)=> {
 
     var connection = mysql.createConnection({
         host     : 'localhost',
@@ -16,7 +16,7 @@ app.get('/generos', (req,res)=> {
 
         connection.connect();
  
-        connection.query('SELECT * from generos', function (error, results, fields) {
+        connection.query(`SELECT * FROM GENEROSMUSICALES WHERE id=${req.query.id_generos}`,  function(error, results, fields){
 
             if (error) throw error;
             res.json(results)
@@ -27,9 +27,9 @@ app.get('/generos', (req,res)=> {
 
 //enviar datos en el body
 //casi siempre son para dar de alta, se puede enviar json,html varias cosas
-app.post('/usuarios', (req,res)=> {
+app.post('/generosmusicales', (req,res)=> {
     console.log(req.body.id);
-    res.send('Enviaste una peticion POST a /generos');
+    res.send('Enviaste una peticion POST a /generosmusicales');
 })
 
 app.listen(8082, () => {
