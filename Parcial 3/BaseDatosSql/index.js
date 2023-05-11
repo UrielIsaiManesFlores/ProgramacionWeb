@@ -7,6 +7,9 @@ app.use(express.json());
 //aqui se cambia usurarios por el nombre de de la tabla 
 app.get('/generosmusicales', (req,res)=> {
 
+    if (typeof(req.query.id) == 'undefined' ){
+    res.json({mensaje:"debe de enviar el id del genero"});
+    }else{
     var connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
@@ -16,14 +19,27 @@ app.get('/generosmusicales', (req,res)=> {
 
         connection.connect();
  
-        connection.query(`SELECT * FROM GENEROSMUSICALES WHERE id=${req.query.id_generos}`,  function(error, results, fields){
+        connection.query(`SELECT * FROM GENEROSMUSICALES WHERE id=${req.query.id}`,  function(error, results, fields){
 
-            if (error) throw error;
-            res.json(results)
+            if (error) 
+            {
+                res.json(error);
+            }
+            else
+            {
+                if(results.length == 0)
+                {
+                    res.json({Mensaje:"Genero no encontrado"})
+                }
+                else{
+                    res.json(results);
+                }
+            }
         }); 
- 
+    
         connection.end();
-})
+    
+}}) 
 
 //enviar datos en el body
 //casi siempre son para dar de alta, se puede enviar json,html varias cosas
