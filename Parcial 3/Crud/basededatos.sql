@@ -10,3 +10,6 @@ CREATE TABLE generos (
 );
 
 INSERT INTO generos (nombre, descripcion) VALUES ('Rock', 'Género musical que se caracteriza por el uso de guitarras eléctricas y batería.');
+
+INSERT INTO generos (nombre, descripcion) VALUES ('Reggaeton', 'Género musical de origen latinoamericano que combina la música electrónica, el hip hop y el reggae.');
+

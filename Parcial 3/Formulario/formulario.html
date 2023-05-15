@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <label for="id">ID</label>
+        <input id="id" type="text"> <br>
+
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text"> <br>
+
+        <label for="descripcion">Descripcion</label>
+        <input id="descripcion" type="text"> <br>
+
+        <button id="btnConsulta" type="button">Consulta</button>
+    </form>
+
+    <script>
+        document.getElementById("btnConsulta").addEventListener("click", function(){
+
+            let id = prompt("Teclee el ID del genero musical");
+
+            fetch('http://localhost:8082/generosmusicales?id='+id)
+                .then(respuesta => respuesta.json())
+                    .then(ObjetoGenero => {
+                    console.log(ObjetoGenero)
+                    document.getElementById("nombre").value=ObjetoGenero[0].nombre;
+                    document.getElementById("descripcion").value=ObjetoGenero[0].descripcion;
+                    document.getElementById("id").value=ObjetoGenero[0].id
+                });
+        });
+    </script>
+</body>
+</html>
