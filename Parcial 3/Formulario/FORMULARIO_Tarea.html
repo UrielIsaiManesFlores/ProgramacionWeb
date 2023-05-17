@@ -118,30 +118,24 @@
             //let id = document.getElementById("id").value;
             let id = prompt("Teclee el ID del género musical");
 
-            fetch('http://localhost:8082/generosmusicales?id='+id)
+            fetch('http://localhost:8082/generosmusicales/'+id)
                 .then(respuesta => respuesta.json())
                     .then(ObjetoGenero => {
-                        console.log(ObjetoGenero);
-                        if (ObjetoGenero.Mensaje) {
-                            // Mostrar mensaje de error en el div
-                            document.getElementById("mensaje").innerHTML = ObjetoGenero.Mensaje;
-                            // Mostrar alerta de SweetAlert2
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: ObjetoGenero.Mensaje
-                            });
-                        } else {
+                        //console.log(ObjetoGenero);
+                        if (ObjetoGenero.estado ==1) {
+            
                             // Mostrar los datos del género en los inputs
-                            document.getElementById("nombre").value=ObjetoGenero[0].nombre;
-                            document.getElementById("descripcion").value=ObjetoGenero[0].descripcion;
-                            document.getElementById("id").value=ObjetoGenero[0].id;
-                            document.getElementById("popularidad").value=ObjetoGenero[0].popularidad;
-                            document.getElementById("fecha_creacion").value=ObjetoGenero[0].fecha_creacion;
-                            document.getElementById("ultima_modificacion").value=ObjetoGenero[0].ultima_modificacion;
+                            document.getElementById("nombre").value=ObjetoGenero.respuesta.nombre;
+                            document.getElementById("descripcion").value=ObjetoGenero.respuesta.descripcion;
+                            document.getElementById("id").value=ObjetoGenero.respuesta.id;
+                            document.getElementById("popularidad").value=ObjetoGenero.respuesta.popularidad;
+                            document.getElementById("fecha_creacion").value=ObjetoGenero.respuesta.fecha_creacion;
+                            document.getElementById("ultima_modificacion").value=ObjetoGenero.respuesta.ultima_modificacion;
                             
                             // Borrar el mensaje de error del div
                             document.getElementById("mensaje").innerHTML = '';
+                        }else{
+                            alert(ObjetoGenero.resultado);
                         }
                 });
         });

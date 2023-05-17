@@ -13,3 +13,6 @@ INSERT INTO generos (nombre, descripcion) VALUES ('Rock', 'Género musical que s
 
 INSERT INTO generos (nombre, descripcion) VALUES ('Reggaeton', 'Género musical de origen latinoamericano que combina la música electrónica, el hip hop y el reggae.');
 
+
+use programacionweb;
+INSERT INTO //TABLE

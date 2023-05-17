@@ -8,8 +8,42 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/generosmusicales', (req, res) => {
-    if (typeof(req.query.id) === 'undefined') {
-        res.json({ mensaje: "Debe enviar el ID del género" });
+  
+        const connection = mysql.createConnection({
+              host: 'localhost',
+              user: 'root',
+              password: '',
+              database: 'programacionweb'
+        });
+  
+          connection.connect();
+                
+          connection.query(`SELECT * FROM GENEROSMUSICALES `, function (error, results, fields) {
+              if (error) {
+                  res.json(error);
+              } else {
+                  if (results.length === 0) {
+                      res.json({ Mensaje: "Género no encontrado" });
+                  } else {
+                      res.json(results);
+                  }
+              }
+          });
+  
+          connection.end();
+      
+  });
+
+
+
+
+    // /:generemosmsuicales puede ser otra opcion
+app.get('/generosmusicales/:id', (req, res) => {
+    
+  //podria ser req.params.id    tambien con .body.id    query.id
+    if (typeof(req.params.id) === 'undefined') {
+        res.json({ estado:0,
+        resultado: "Debe enviar el ID del género" });
     } else {
         const connection = mysql.createConnection({
             host: 'localhost',
@@ -19,15 +53,15 @@ app.get('/generosmusicales', (req, res) => {
         });
 
         connection.connect();
-
-        connection.query(`SELECT * FROM GENEROSMUSICALES WHERE id=${req.query.id}`, function (error, results, fields) {
+                                                       //podria ser req.params.id   tambine con req.body.id    
+        connection.query(`SELECT * FROM GENEROSMUSICALES WHERE id=${req.params.id}`, function (error, results, fields) {
             if (error) {
-                res.json(error);
+                res.json({estado:0, resultado:error.sqlMessage});
             } else {
                 if (results.length === 0) {
-                    res.json({ Mensaje: "Género no encontrado" });
+                    res.json({estado:0, resultado: "Género no encontrado" });
                 } else {
-                    res.json(results);
+                    res.json({estado:1, resultado:results[0]});
                 }
             }
         });
