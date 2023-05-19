@@ -103,6 +103,40 @@ app.delete('/generosmusicales/:id', (req, res) => {
           connection.end();
       }
   });
+
+
+  app.post('/generosmusicales', (req, res) => {
+  
+    const connection = mysql.createConnection({
+          host: 'localhost',
+          user: 'root',
+          password: '',
+          database: 'programacionweb'
+    });
+
+       let sentenciaSQL="insert into generosmusicales values("+req.body.id+","+
+                                                            "'"+req.body.nombre+"',"+
+                                                            "'"+req.body.descripcion+"',"+
+                                                            "'"+req.body.popularidad+"',"+
+                                                            "'"+req.body.fecha_creacion+"',"+
+                                                            "'"+req.body.ultima_modificacion+"'"+")";
+                                                        
+    
+    console.log(sentenciaSQL);
+    //res.json(req.body) 
+    connection.connect();
+       connection.query(sentenciaSQL, function (error, results, fields) {
+           if (error) {
+               res.json(error);
+           } else {
+               console.log(results);
+               res.json(results);
+           }
+       });
+
+       connection.end();
+  
+});
   
 
 app.post('/generosmusicales', (req, res) => {
