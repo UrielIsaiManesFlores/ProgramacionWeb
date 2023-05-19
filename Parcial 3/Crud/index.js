@@ -70,6 +70,41 @@ app.get('/generosmusicales/:id', (req, res) => {
     }
 });
 
+app.delete('/generosmusicales/:id', (req, res) => {
+    
+    
+      if (typeof(req.params.id) === 'undefined') {
+          res.json({ estado:0,
+          resultado: "Debe enviar el ID del género" });
+      } else {
+          const connection = mysql.createConnection({
+              host: 'localhost',
+              user: 'root',
+              password: '',
+              database: 'programacionweb'
+          });
+  
+          connection.connect();
+                                                           
+          connection.query(`DELETE FROM GENEROSMUSICALES WHERE id=${req.params.id}`, function (error, results, fields) {
+              if (error) {
+                  res.json({estado:0, resultado:error.sqlMessage});
+              } else {
+                
+                if(results.affectedRows == 1){
+                    res.json({estado:1, resultado: "Género Eliminado" });
+                }
+                else{
+                    res.json({estado:0, resultado: "No se pudo eliminar" });
+                }
+              }
+          });
+  
+          connection.end();
+      }
+  });
+  
+
 app.post('/generosmusicales', (req, res) => {
     console.log(req.body.id);
     res.send('Enviaste una petición POST a /generosmusicales');
