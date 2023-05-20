@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(cors());
 
+        //Mostrar Toda la tabla
 app.get('/generosmusicales', (req, res) => {
   
         const connection = mysql.createConnection({
@@ -35,9 +36,7 @@ app.get('/generosmusicales', (req, res) => {
   });
 
 
-
-
-    // /:generemosmsuicales puede ser otra opcion
+        //Mostrar el genero musical ingresando el ID
 app.get('/generosmusicales/:id', (req, res) => {
     
   //podria ser req.params.id    tambien con .body.id    query.id
@@ -70,6 +69,8 @@ app.get('/generosmusicales/:id', (req, res) => {
     }
 });
 
+
+        //Borrar de la tabla un genero musical por el ID
 app.delete('/generosmusicales/:id', (req, res) => {
     
     
@@ -104,7 +105,8 @@ app.delete('/generosmusicales/:id', (req, res) => {
       }
   });
 
-
+  
+        //Agregar a la tabla un nuevo genero musical  
   app.post('/generosmusicales', (req, res) => {
   
     const connection = mysql.createConnection({
