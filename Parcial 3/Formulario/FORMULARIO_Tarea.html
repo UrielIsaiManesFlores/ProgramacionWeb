@@ -43,6 +43,7 @@
 
             <button id="btnConsulta" type="button">Consultar</button>
             <button id="btnBorrar" type="button">Borrar</button>
+            <button></button>
             <div id="mensaje" class="error-message"></div>
 
         
@@ -101,6 +102,33 @@ fetch('http://localhost:8082/generosmusicales/'+id,{method:"DELETE"})
                 document.getElementById("ultima_modificacion").value='';
                 
 
+                
+                // Borrar el mensaje de error del div
+                document.getElementById("mensaje").innerHTML = '';
+            }else{
+                alert(ObjetoGenero.resultado);
+            }
+    });
+});
+
+document.getElementById("btnConsulta").addEventListener("click", function(){
+
+//let id = document.getElementById("id").value;
+let id = prompt("Teclee el ID del género musical");
+
+fetch('http://localhost:8082/generosmusicales/'+id)
+    .then(respuesta => respuesta.json())
+        .then(ObjetoGenero => {
+            //console.log(ObjetoGenero);
+            if (ObjetoGenero.estado ==1) {
+
+                // Mostrar los datos del género en los inputs
+                document.getElementById("nombre").value=ObjetoGenero.resultado.nombre;
+                document.getElementById("descripcion").value=ObjetoGenero.resultado.descripcion;
+                document.getElementById("id").value=ObjetoGenero.resultado.id;
+                document.getElementById("popularidad").value=ObjetoGenero.resultado.popularidad;
+                document.getElementById("fecha_creacion").value=ObjetoGenero.resultado.fecha_creacion;
+                document.getElementById("ultima_modificacion").value=ObjetoGenero.resultado.ultima_modificacion;
                 
                 // Borrar el mensaje de error del div
                 document.getElementById("mensaje").innerHTML = '';
