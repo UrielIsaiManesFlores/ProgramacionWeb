@@ -1,0 +1,23 @@
+.gridjs {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 3px solid #ccc;
+  }
+
+  .gridjs th {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+    border-bottom: 3px solid #ccc;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .gridjs td {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .gridjs tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
