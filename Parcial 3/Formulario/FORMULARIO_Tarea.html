@@ -40,6 +40,7 @@
             <button id="btnConsulta" type="button">Consultar</button>
             <button id="btnBorrar" type="button">Borrar</button>
             <button id="btnAgregar" type="button">Agregar</button>
+            <button id="btnLimpiarF" type="button">Limpiar Formulario</button>
 
             
             <div id="mensaje" class="error-message"></div>
@@ -50,6 +51,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        //Boton para consultar a la base de datos
         document.getElementById("btnConsulta").addEventListener("click", function(){
 
             //let id = document.getElementById("id").value;
@@ -69,17 +71,24 @@
                             document.getElementById("fecha_creacion").value=ObjetoGenero.resultado.fecha_creacion;
                             document.getElementById("ultima_modificacion").value=ObjetoGenero.resultado.ultima_modificacion;
                             
-                            // Borrar el mensaje de error del div
-                            document.getElementById("mensaje").innerHTML = '';
+                            // Mensaje en el DIV
+                            document.getElementById("mensaje").innerHTML = 'Consulta realizada de manera exitosa.';
                         }else{
                             alert(ObjetoGenero.resultado);
                         }
                 });
         });
-
+        
+        //boton para borrar un genero musical de la base de datos
         document.getElementById("btnBorrar").addEventListener("click", function(){
 
             let id = document.getElementById("id").value;
+
+            // Verificar si los campos están vacíos
+            if (id.trim() === '') {
+                alert('Error: Debes ingresar un ID');
+                return;
+            }
 
             fetch('http://localhost:8082/generosmusicales/'+id,{method:"DELETE"})
                 .then(respuesta => respuesta.json())
@@ -99,14 +108,15 @@
                             
 
                             
-                            // Borrar el mensaje de error del div
-                            document.getElementById("mensaje").innerHTML = '';
+                            //let mensaje = alert("Género musical elimnado de la Base de Datos.");
+                            document.getElementById("mensaje").innerHTML = "Género musical eliminado exitosamente.";
                         }else{
                             alert(ObjetoGenero.resultado);
                         }
                 });
             });
 
+        //botonn para agregar un nuevo genero musical a la base de datos
         document.getElementById("btnAgregar").addEventListener("click", function(){
 
             //let id = document.getElementById("id").value;
@@ -118,6 +128,12 @@
             let popularidad = document.getElementById("popularidad").value;
             let fecha_creacion = document.getElementById("fecha_creacion").value;
             let ultima_modificacion = document.getElementById("ultima_modificacion").value;
+
+            // Verificar si los campos están vacíos
+            if (id.trim() === '' || nombre.trim() === '' || descripcion.trim() === '' || popularidad.trim() === '' || fecha_creacion.trim() === '' || ultima_modificacion.trim() === '') {
+                alert('Error: Todos los campos deben estar completos');
+                return;
+            }
 
             // Crear un objeto con los datos del nuevo género musical
             let nuevoGenero = {
@@ -133,20 +149,47 @@
             fetch('http://localhost:8082/generosmusicales', {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json' //envia un ojbeto al body
                 },
-                body: JSON.stringify(nuevoGenero)
+                body: JSON.stringify(nuevoGenero) //lo convierte a una cadena JSON 
             })
                 .then(respuesta => respuesta.json())
                 .then(resultado => {
-                // Mostrar el resultado de la operación en la consola
+                
                 console.log(resultado);
+
+                // Limpiar los campos del formulario
+                document.getElementById("id").value = "";
+                document.getElementById("nombre").value = "";
+                document.getElementById("descripcion").value = "";
+                document.getElementById("popularidad").value = "";
+                document.getElementById("fecha_creacion").value = "";
+                document.getElementById("ultima_modificacion").value = "";
+                
             });
             
             let mensaje = alert("Género musical agregado exitosamente.");
             document.getElementById("mensaje").innerHTML = "Género musical agregado exitosamente.";
 
             });
+
+        //boton para limpiar el form 
+        document.getElementById("btnLimpiarF").addEventListener("click", function(){
+
+                    // Limpiar los campos del formulario
+                    document.getElementById("id").value = "";
+                    document.getElementById("nombre").value = "";
+                    document.getElementById("descripcion").value = "";
+                    document.getElementById("popularidad").value = "";
+                    document.getElementById("fecha_creacion").value = "";
+                    document.getElementById("ultima_modificacion").value = "";
+                    
+                
+
+                let mensaje = alert("Formulario Limpio");
+                document.getElementById("mensaje").innerHTML = "Campos Vacios";
+
+                });
     </script>
 </body>
 </html>
