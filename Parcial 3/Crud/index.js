@@ -35,7 +35,6 @@ app.get('/generosmusicales', (req, res) => {
       
   });
 
-
         //Mostrar el genero musical ingresando el ID
 app.get('/generosmusicales/:id', (req, res) => {
     
@@ -69,7 +68,6 @@ app.get('/generosmusicales/:id', (req, res) => {
     }
 });
 
-
         //Borrar de la tabla un genero musical por el ID
 app.delete('/generosmusicales/:id', (req, res) => {
     
@@ -93,7 +91,7 @@ app.delete('/generosmusicales/:id', (req, res) => {
               } else {
                 
                 if(results.affectedRows == 1){
-                    res.json({estado:1, resultado: "Género Eliminado" });
+                    res.json({estado:1, resultado: "Género musical elimnado de la Base de Datos." });
                 }
                 else{
                     res.json({estado:0, resultado: "No se pudo eliminar" });
@@ -105,7 +103,6 @@ app.delete('/generosmusicales/:id', (req, res) => {
       }
   });
 
-  
         //Agregar a la tabla un nuevo genero musical  
   app.post('/generosmusicales', (req, res) => {
   
