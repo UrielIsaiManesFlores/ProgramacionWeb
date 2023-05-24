@@ -136,7 +136,45 @@ app.delete('/generosmusicales/:id', (req, res) => {
        connection.end();
   
 });
+
+app.put('/generosmusicales/:id', (req, res) => {
   
+       let sentenciaSQL="update generosmusicales set "+
+       "nombre='"+req.body.nombre+"',"+
+       "descripcion='"+req.body.descripcion+"',"+
+       "popularidad='"+req.body.popularidad+"',"+
+       "fecha_creacion='"+req.body.fecha_creacion+"',"+
+       "ultima_modificacion='"+req.body.ultima_modificacion+"'"
+       +" where id="+ req.params.id;
+                                    
+       const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'programacionweb'
+  });
+    
+    //console.log(sentenciaSQL);
+    //res.json(req.body) 
+    connection.connect();
+       connection.query(sentenciaSQL, function (error, results, fields) {
+           if (error) {
+               res.json(error);
+           } else {
+               console.log(results);
+               if(results.affectedRows==1){
+                res.json({estado:1,
+                resultado:"Cliente Modificado"});
+               } else{
+                res.json({estado:1,
+                resultado:"Ocurrio un error"});
+               }
+           }
+       });
+
+       connection.end();
+  
+});
 
 app.post('/generosmusicales', (req, res) => {
     console.log(req.body.id);

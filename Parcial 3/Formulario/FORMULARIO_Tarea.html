@@ -40,6 +40,7 @@
             <button id="btnConsulta" type="button">Consultar</button>
             <button id="btnBorrar" type="button">Borrar</button>
             <button id="btnAgregar" type="button">Agregar</button>
+            <button id="btnModificar" type="button">Modificar</button>
             <button id="btnLimpiarF" type="button">Limpiar Formulario</button>
 
             
@@ -173,6 +174,50 @@
 
             });
 
+        document.getElementById("btnModificar").addEventListener("click", function(){
+
+            //let id = document.getElementById("id").value;
+            //let id = prompt("Teclee el ID del género musical");
+
+            let id = document.getElementById("id").value;
+            let nombre = document.getElementById("nombre").value;
+            let descripcion = document.getElementById("descripcion").value;
+            let popularidad = document.getElementById("popularidad").value;
+            let fecha_creacion = document.getElementById("fecha_creacion").value;
+            let ultima_modificacion = document.getElementById("ultima_modificacion").value;
+
+
+            // Crear un objeto con los datos del nuevo género musical
+            let nuevoGenero = {
+                id: id,
+                nombre: nombre,
+                descripcion: descripcion,
+                popularidad: popularidad,
+                fecha_creacion: fecha_creacion,
+                ultima_modificacion: ultima_modificacion
+            };
+
+            // Realizar la solicitud POST al servidor
+            fetch('http://localhost:8082/generosmusicales/'+document.getElementById("id").value, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json' //envia un ojbeto al body
+                },
+                body: JSON.stringify(nuevoGenero) //lo convierte a una cadena JSON 
+            })
+                .then(respuesta => respuesta.json())
+                .then(resultado => {
+                
+                console.log(resultado);
+                
+            });
+
+            //alert(datojson.resultado);
+            let mensaje = alert("Género musical MODIFICADO exitosamente.");
+            document.getElementById("mensaje").innerHTML = "Género musical MODIFICADO exitosamente.";
+
+});
+        
         //boton para limpiar el form 
         document.getElementById("btnLimpiarF").addEventListener("click", function(){
 
