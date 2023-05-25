@@ -164,7 +164,7 @@ app.put('/generosmusicales/:id', (req, res) => {
                console.log(results);
                if(results.affectedRows==1){
                 res.json({estado:1,
-                resultado:"Cliente Modificado"});
+                resultado:"Genero Modificado"});
                } else{
                 res.json({estado:1,
                 resultado:"Ocurrio un error"});
