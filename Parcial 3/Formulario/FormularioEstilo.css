@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333;
@@ -14,14 +14,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     box-sizing: border-box;
-}
+} */
 h1 {
-    font-size: 24px;
+    font-size: 22px;
     margin-top: 0;
     margin-bottom: 20px;
 }
-label {
-    /* display: block; */
+/* label {
+    /* display: block; 
     display: inline-block;
     margin-bottom: 10px;
     font-weight: bold;
@@ -48,7 +48,8 @@ button[type="button"] {
 button[type="button"]:hover {
     background-color: #0062cc;
 }
-/* Estilos específicos del formulario */
+
+/* Estilos específicos del formulario 
 .form-group {
     margin-bottom: 20px;
 }
@@ -57,7 +58,7 @@ button[type="button"]:hover {
 }
 .form-group input[type="text"] {
     font-size: 18px;
-}
+} */
 .error-message {
     color: #dc3545;
     font-size: 16px;
