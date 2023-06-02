@@ -34,8 +34,8 @@ input[type="text"] {
     box-shadow: none;
     width: 100%;
     box-sizing: border-box;
-}
-button[type="button"] {
+} 
+ button[type="button"] {
     padding: 10px;
     font-size: 16px;
     background-color: #007bff;
@@ -43,11 +43,11 @@ button[type="button"] {
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-button[type="button"]:hover {
+    transition: background-color 0.3s ease; 
+} 
+ button[type="button"]:hover {
     background-color: #0062cc;
-}
+} 
 
 /* Estilos específicos del formulario 
 .form-group {
@@ -59,7 +59,7 @@ button[type="button"]:hover {
 .form-group input[type="text"] {
     font-size: 18px;
 } */
-.error-message {
+ .error-message {
     color: #dc3545;
     font-size: 16px;
     margin-top: 10px;
